@@ -1,0 +1,50 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ecommerce Multi Vendor API",
+        "description": "Ecommerce Multi Vendor API Swagger Documentation.",
+        "contact": {
+            "name": "DevsEnv"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1": {},
+        "/api/v1/test": {
+            "get": {
+                "tags": [
+                    "Ping"
+                ],
+                "summary": "Ping API",
+                "description": "Ping API",
+                "operationId": "cd52341d8f9c422cd7cdd22a2d32b561",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Welcome to Ecommerce Multi Vendor API"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

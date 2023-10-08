@@ -155,20 +155,24 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
+    'providers' => ServiceProvider::defaultProviders()->merge(
+        [
+                /*
+                 * Package Service Providers...
+                 */
+            L5Swagger\L5SwaggerServiceProvider::class,
+            Spatie\Permission\PermissionServiceProvider::class,
 
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+                /*
+                 * Application Service Providers...
+                 */
+            App\Providers\AppServiceProvider::class,
+            App\Providers\AuthServiceProvider::class,
+                // App\Providers\BroadcastServiceProvider::class,
+            App\Providers\EventServiceProvider::class,
+            App\Providers\RouteServiceProvider::class,
+        ]
+    )->toArray(),
 
     /*
     |--------------------------------------------------------------------------
