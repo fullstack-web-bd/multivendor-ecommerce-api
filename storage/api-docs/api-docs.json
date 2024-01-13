@@ -31,7 +31,74 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Welcome to Ecommerce Multi Vendor API"
+                                            "example": "Category list fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create Category API",
+                "description": "Create Category API",
+                "operationId": "4da23ce8c9c3bb5405e35ff6744e7992",
+                "requestBody": {
+                    "description": "Create New category with category data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Category Name"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "category-name"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Category description"
+                                    },
+                                    "parent_id": {
+                                        "type": "integer",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category created successfully."
                                         },
                                         "data": {
                                             "type": "object",
@@ -80,6 +147,135 @@
                                         "message": {
                                             "type": "string",
                                             "example": "Welcome to Ecommerce Multi Vendor API"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Update category API",
+                "description": "Update category API",
+                "operationId": "810e4add9268ea2e2cc874d3d3ad10de",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update category with category data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Category Name"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "category-name"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Category description"
+                                    },
+                                    "parent_id": {
+                                        "type": "integer",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category updated successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Delete category API",
+                "description": "Delete category API",
+                "operationId": "02ae4fe4dce80337d240a8bcba6c1b58",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category deleted successfully."
                                         },
                                         "data": {
                                             "type": "object",

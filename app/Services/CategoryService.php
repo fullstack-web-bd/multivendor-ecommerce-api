@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Exceptions\CategoryException;
 use App\Models\Category;
 use App\Repositories\BrandRepository;
 use App\Repositories\CategoryRepository;
@@ -37,9 +38,13 @@ class CategoryService
         return $this->categoryRepository->store($data);
     }
 
-    public function update(array $data, int $id): bool
+    public function update(array $data, int $id): Category
     {
-        return $this->categoryRepository->update($data, $id);
+        if ($this->categoryRepository->update($data, $id)) {
+            return $this->categoryRepository->show($id);
+        }
+
+        throw new CategoryException('Category could not be updated.');
     }
 
     public function destroy(int $id): bool
