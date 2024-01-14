@@ -6,6 +6,8 @@ use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Services\CategoryService;
 use App\Traits\Responsable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CategoriesController extends Controller
 {
@@ -43,33 +45,60 @@ class CategoriesController extends Controller
     }
 
     /**
-     * @OA\Post(
-     *    path="/api/v1/categories",
-     *    tags={"Categories"},
-     *    summary="Create Category API",
-     *    description="Create Category API",
-     *    @OA\RequestBody(
-     *     required=true,
-     *     description="Create New category with category data",
-     *     @OA\JsonContent(
-     *        required={"name","slug"},
-     *        @OA\Property(property="name", type="string", example="Category Name"),
-     *        @OA\Property(property="slug", type="string", example="category-name"),
-     *        @OA\Property(property="description", type="string", example="Category description"),
-     *        @OA\Property(property="parent_id", type="int", example=null),
-     *     ),
-     *    ),
-     *    @OA\Response(
-     *         response=200,
-     *         description="Success",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="Category created successfully."),
-     *             @OA\Property(property="data", type="object", example="null"),
-     *         )
-     *     )
-     * )
-     */
+    * @OA\Post(
+    *    path="/api/v1/categories",
+    *    tags={"Categories"},
+    *    summary="Create Category API",
+    *    description="Create Category API",
+    *    @OA\RequestBody(
+    *        required=true,
+    *        description="Category data",
+    *        @OA\MediaType(
+    *            mediaType="multipart/form-data",
+    *            @OA\Schema(
+    *                @OA\Property(
+    *                    property="name",
+    *                    description="Category Name",
+    *                    type="string",
+    *                    example="Sample Category"
+    *                ),
+    *                @OA\Property(
+    *                    property="slug",
+    *                    description="Slug",
+    *                    type="string",
+    *                    example="sample-category"
+    *                ),
+    *                @OA\Property(
+    *                    property="description",
+    *                    description="Description",
+    *                    type="string",
+    *                    example="Sample description"
+    *                ),
+    *                @OA\Property(
+    *                    property="parent_id",
+    *                    description="Parent",
+    *                    type="string",
+    *                ),
+    *                @OA\Property(
+    *                    property="image",
+    *                    description="Image file",
+    *                    type="string",
+    *                    format="binary"
+    *                ),
+    *            )
+    *        )
+    *    ),
+    *    @OA\Response(
+    *         response=200,
+    *         description="Success",
+    *         @OA\JsonContent(
+    *             @OA\Property(property="success", type="boolean", example=true),
+    *             @OA\Property(property="message", type="string", example="Category created successfully."),
+    *             @OA\Property(property="data", type="object", example="null"),
+    *         )
+    *     )
+    * )
+    */
     public function store(CategoryCreateRequest $request)
     {
         try {
@@ -112,37 +141,137 @@ class CategoriesController extends Controller
         }
     }
 
+    // /**
+    //  * @OA\PUT(
+    //  *    path="/api/v1/categories/{id}",
+    //  *    tags={"Categories"},
+    //  *    summary="Update category API",
+    //  *    description="Update category API",
+    //  *    @OA\Parameter(name="id", description="Category ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
+    //  *    @OA\RequestBody(
+    //  *        required=true,
+    //  *        description="Category data",
+    //  *        @OA\MediaType(
+    //  *            mediaType="multipart/form-data",
+    //  *            @OA\Schema(
+    //  *                @OA\Property(
+    //  *                    property="name",
+    //  *                    description="Category Name",
+    //  *                    type="string",
+    //  *                    example="Sample Category"
+    //  *                ),
+    //  *                @OA\Property(
+    //  *                    property="slug",
+    //  *                    description="Slug",
+    //  *                    type="string",
+    //  *                    example="sample-category"
+    //  *                ),
+    //  *                @OA\Property(
+    //  *                    property="description",
+    //  *                    description="Description",
+    //  *                    type="string",
+    //  *                    example="Sample description"
+    //  *                ),
+    //  *                @OA\Property(
+    //  *                    property="parent_id",
+    //  *                    description="Parent",
+    //  *                    type="string",
+    //  *                ),
+    //  *                @OA\Property(
+    //  *                    property="image",
+    //  *                    description="Image file",
+    //  *                    type="string",
+    //  *                    format="binary"
+    //  *                ),
+    //  *            )
+    //  *        )
+    //  *    ),
+    //  *    @OA\Response(
+    //  *         response=200,
+    //  *         description="Success",
+    //  *         @OA\JsonContent(
+    //  *             @OA\Property(property="success", type="boolean", example=true),
+    //  *             @OA\Property(property="message", type="string", example="Category updated successfully."),
+    //  *             @OA\Property(property="data", type="object", example="null"),
+    //  *         )
+    //  *     )
+    //  * )
+    //  */
+
     /**
-     * @OA\PUT(
-     *    path="/api/v1/categories/{id}",
-     *    tags={"Categories"},
-     *    summary="Update category API",
-     *    description="Update category API",
-     *    @OA\Parameter(name="id", description="Category ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
-     *    @OA\RequestBody(
-     *     required=true,
-     *     description="Update category with category data",
-     *     @OA\JsonContent(
-     *        required={"name","slug"},
-     *        @OA\Property(property="id", type="int", example=1),
-     *        @OA\Property(property="name", type="string", example="Category Name"),
-     *        @OA\Property(property="slug", type="string", example="category-name"),
-     *        @OA\Property(property="description", type="string", example="Category description"),
-     *        @OA\Property(property="parent_id", type="int", example=null),
-     *     ),
-     *    ),
-     *    @OA\Response(
-     *         response=200,
-     *         description="Success",
-     *         @OA\JsonContent(
-     *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="Category updated successfully."),
-     *             @OA\Property(property="data", type="object", example="null"),
-     *         )
-     *     )
-     * )
-     */
-    public function update(CategoryUpdateRequest $request, $id)
+    * @OA\Post(
+    *    path="/api/v1/categories/{id}",
+    *    tags={"Categories"},
+    *    summary="Update Category API",
+    *    description="Update Category API",
+    *    @OA\Parameter(
+    *         name="id",
+    *         description="Category ID or Slug",
+    *         example=1,
+    *         required=true, in="path", @OA\Schema(type="string")
+    *    ),
+    *    @OA\Parameter(
+    *         name="_method",
+    *         description="Category ID or Slug",
+    *         example="PUT",
+    *         required=true, in="query", @OA\Schema(type="string")
+    *    ),
+    *    @OA\RequestBody(
+    *        required=true,
+    *        description="Category data",
+    *        @OA\MediaType(
+    *            mediaType="multipart/form-data",
+    *            @OA\Schema(
+    *                @OA\Property(
+    *                    property="id",
+    *                    description="Category ID",
+    *                    type="string",
+    *                    example="1"
+    *                ),
+    *                @OA\Property(
+    *                    property="name",
+    *                    description="Category Name",
+    *                    type="string",
+    *                    example="Sample Category"
+    *                ),
+    *                @OA\Property(
+    *                    property="slug",
+    *                    description="Slug",
+    *                    type="string",
+    *                    example="sample-category"
+    *                ),
+    *                @OA\Property(
+    *                    property="description",
+    *                    description="Description",
+    *                    type="string",
+    *                    example="Sample description"
+    *                ),
+    *                @OA\Property(
+    *                    property="parent_id",
+    *                    description="Parent",
+    *                    type="string",
+    *                ),
+    *                @OA\Property(
+    *                    property="image",
+    *                    description="Image file",
+    *                    type="string",
+    *                    format="binary"
+    *                ),
+    *            )
+    *        )
+    *    ),
+    *    @OA\Response(
+    *         response=200,
+    *         description="Success",
+    *         @OA\JsonContent(
+    *             @OA\Property(property="success", type="boolean", example=true),
+    *             @OA\Property(property="message", type="string", example="Category created successfully."),
+    *             @OA\Property(property="data", type="object", example="null"),
+    *         )
+    *     )
+    * )
+    */
+    public function update(CategoryUpdateRequest $request, int $id)
     {
         try {
             return $this->successResponse(

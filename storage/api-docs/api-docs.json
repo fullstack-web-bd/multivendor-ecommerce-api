@@ -53,31 +53,35 @@
                 "description": "Create Category API",
                 "operationId": "4da23ce8c9c3bb5405e35ff6744e7992",
                 "requestBody": {
-                    "description": "Create New category with category data",
+                    "description": "Category data",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "required": [
-                                    "name",
-                                    "slug"
-                                ],
                                 "properties": {
                                     "name": {
+                                        "description": "Category Name",
                                         "type": "string",
-                                        "example": "Category Name"
+                                        "example": "Sample Category"
                                     },
                                     "slug": {
+                                        "description": "Slug",
                                         "type": "string",
-                                        "example": "category-name"
+                                        "example": "sample-category"
                                     },
                                     "description": {
+                                        "description": "Description",
                                         "type": "string",
-                                        "example": "Category description"
+                                        "example": "Sample description"
                                     },
                                     "parent_id": {
-                                        "type": "integer",
-                                        "example": null
+                                        "description": "Parent",
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 },
                                 "type": "object"
@@ -160,13 +164,13 @@
                     }
                 }
             },
-            "put": {
+            "post": {
                 "tags": [
                     "Categories"
                 ],
-                "summary": "Update category API",
-                "description": "Update category API",
-                "operationId": "810e4add9268ea2e2cc874d3d3ad10de",
+                "summary": "Update Category API",
+                "description": "Update Category API",
+                "operationId": "00b9ec2dcfc55e3abc9a0a9b83c0b414",
                 "parameters": [
                     {
                         "name": "id",
@@ -177,38 +181,53 @@
                             "type": "string"
                         },
                         "example": 1
+                    },
+                    {
+                        "name": "_method",
+                        "in": "query",
+                        "description": "Category ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PUT"
                     }
                 ],
                 "requestBody": {
-                    "description": "Update category with category data",
+                    "description": "Category data",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "required": [
-                                    "name",
-                                    "slug"
-                                ],
                                 "properties": {
                                     "id": {
-                                        "type": "integer",
-                                        "example": 1
+                                        "description": "Category ID",
+                                        "type": "string",
+                                        "example": "1"
                                     },
                                     "name": {
+                                        "description": "Category Name",
                                         "type": "string",
-                                        "example": "Category Name"
+                                        "example": "Sample Category"
                                     },
                                     "slug": {
+                                        "description": "Slug",
                                         "type": "string",
-                                        "example": "category-name"
+                                        "example": "sample-category"
                                     },
                                     "description": {
+                                        "description": "Description",
                                         "type": "string",
-                                        "example": "Category description"
+                                        "example": "Sample description"
                                     },
                                     "parent_id": {
-                                        "type": "integer",
-                                        "example": null
+                                        "description": "Parent",
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "description": "Image file",
+                                        "type": "string",
+                                        "format": "binary"
                                     }
                                 },
                                 "type": "object"
@@ -229,7 +248,7 @@
                                         },
                                         "message": {
                                             "type": "string",
-                                            "example": "Category updated successfully."
+                                            "example": "Category created successfully."
                                         },
                                         "data": {
                                             "type": "object",
