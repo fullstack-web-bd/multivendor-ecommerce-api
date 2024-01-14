@@ -56,12 +56,8 @@
                     "description": "Create New category with category data",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "required": [
-                                    "name",
-                                    "slug"
-                                ],
                                 "properties": {
                                     "name": {
                                         "type": "string",
@@ -76,7 +72,11 @@
                                         "example": "Category description"
                                     },
                                     "parent_id": {
-                                        "type": "integer",
+                                        "type": "integer"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary",
                                         "example": null
                                     }
                                 },
@@ -160,13 +160,13 @@
                     }
                 }
             },
-            "put": {
+            "post": {
                 "tags": [
                     "Categories"
                 ],
                 "summary": "Update category API",
                 "description": "Update category API",
-                "operationId": "810e4add9268ea2e2cc874d3d3ad10de",
+                "operationId": "00b9ec2dcfc55e3abc9a0a9b83c0b414",
                 "parameters": [
                     {
                         "name": "id",
@@ -177,13 +177,23 @@
                             "type": "string"
                         },
                         "example": 1
+                    },
+                    {
+                        "name": "_method",
+                        "in": "query",
+                        "description": "Method",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PUT"
                     }
                 ],
                 "requestBody": {
                     "description": "Update category with category data",
                     "required": true,
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "required": [
                                     "name",
@@ -207,7 +217,11 @@
                                         "example": "Category description"
                                     },
                                     "parent_id": {
-                                        "type": "integer",
+                                        "type": "integer"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary",
                                         "example": null
                                     }
                                 },
