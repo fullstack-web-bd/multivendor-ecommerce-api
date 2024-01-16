@@ -10,6 +10,294 @@
     },
     "paths": {
         "/api/v1": {},
+        "/api/v1/brands": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Brands List API",
+                "description": "Brands List API",
+                "operationId": "0c1a5d6b90006d89100119dd48d02d74",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Brand list fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Create Brand API",
+                "description": "Create Brand API",
+                "operationId": "6609687fbd99f02112779fadc4f494cf",
+                "requestBody": {
+                    "description": "Create New brand with brand data",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Brand Name"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "brand-name"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Brand description"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Brand created successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/brands/{id}": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Brands Detail API",
+                "description": "Brands Detail API",
+                "operationId": "478503d73ae0cc58e25809e95e4e24ee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Welcome to Ecommerce Multi Vendor API"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Update brand API",
+                "description": "Update brand API",
+                "operationId": "46fc3971ebf57081ae544807999ba12e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": 1
+                    },
+                    {
+                        "name": "_method",
+                        "in": "query",
+                        "description": "Method",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "PUT"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update brand with brand data",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "slug"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Brand Name"
+                                    },
+                                    "slug": {
+                                        "type": "string",
+                                        "example": "brand-name"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Brand description"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "example": null
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Brand updated successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Delete brand API",
+                "description": "Delete brand API",
+                "operationId": "969edc9b394762f7c01a835abe54ec52",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Brand ID or Slug",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Brand deleted successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/categories": {
             "get": {
                 "tags": [

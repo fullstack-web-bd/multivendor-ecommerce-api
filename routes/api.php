@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/test', [TestController::class, 'index']);
 Route::apiResource('categories', CategoriesController::class);
+Route::apiResource('brands', BrandsController::class);
