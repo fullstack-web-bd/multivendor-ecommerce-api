@@ -628,5 +628,19 @@
                 }
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Brands",
+            "description": "Brands"
+        },
+        {
+            "name": "Categories",
+            "description": "Categories"
+        },
+        {
+            "name": "Ping",
+            "description": "Ping"
+        }
+    ]
 }
