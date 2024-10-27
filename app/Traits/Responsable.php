@@ -18,12 +18,12 @@ trait Responsable
         ]);
     }
 
-    public function errorResponse(string $message, $exception, $data = null): \Illuminate\Http\JsonResponse
+    public function errorResponse(string $message, $exception = null, $data = null): \Illuminate\Http\JsonResponse
     {
         Log::error($message);
         Log::error($exception);
 
-        if (config('app.debug')) {
+        if (config('app.debug') && $exception instanceof Exception) {
             $message = $exception->getMessage();
         }
 

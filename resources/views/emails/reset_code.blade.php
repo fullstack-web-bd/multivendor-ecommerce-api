@@ -1,0 +1,1 @@
+Reset Email Please. Your reset code is: {{ $code }}

@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->string('password');
             $table->unsignedBigInteger('shop_id')->nullable()->comment('Shop ID of the user');
             $table->rememberToken();
+            $table->string('reset_code')->nullable();
+            $table->timestamp('reset_code_expires_at')->nullable();
             $table->timestamps();
         });
     }

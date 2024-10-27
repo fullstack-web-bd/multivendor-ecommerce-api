@@ -14,11 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('status')->default('pending');
-            $table->unsignedDecimal('total', 10, 2)->default(0);
-            $table->unsignedDecimal('discount', 10, 2)->default(0);
-            $table->unsignedDecimal('tax', 10, 2)->default(0);
-            $table->unsignedDecimal('shipping', 10, 2)->default(0);
-            $table->unsignedDecimal('grand_total', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0);
+            $table->decimal('discount', 10, 2)->default(0);
+            $table->decimal('tax', 10, 2)->default(0);
+            $table->decimal('shipping', 10, 2)->default(0);
+            $table->decimal('grand_total', 10, 2)->default(0);
             $table->unsignedBigInteger('shipping_address_id')->nullable();
             $table->unsignedBigInteger('billing_address_id')->nullable();
             $table->string('order_note')->nullable();

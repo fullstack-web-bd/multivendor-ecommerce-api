@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('payment_method_id');
             $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
-            $table->unsignedDecimal('amount', 10, 2);
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

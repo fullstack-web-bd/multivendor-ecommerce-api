@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| API Routes
+| Auth API Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register API routes for your application. These
@@ -21,10 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Ping route.
-Route::get('/test', [TestController::class, 'index']);
-
-Route::middleware('auth')->group(function () {
-    Route::apiResource('categories', CategoriesController::class);
-    Route::apiResource('brands', BrandsController::class);
-});
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/password/code', [PasswordResetController::class, 'sendResetCode']);
+Route::post('/password/reset', [PasswordResetController::class, 'resetPassword']);
+Route::post('/logout', [LogoutController::class, 'logout']);
