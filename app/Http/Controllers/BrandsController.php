@@ -22,6 +22,7 @@ class BrandsController extends Controller
      *    tags={"Brands"},
      *    summary="Brands List API",
      *    description="Brands List API",
+     *    security={{"bearer":{}}},
      *    @OA\Response(
      *         response=200,
      *         description="Success",
@@ -48,6 +49,7 @@ class BrandsController extends Controller
      *    tags={"Brands"},
      *    summary="Create Brand API",
      *    description="Create Brand API",
+     *    security={{"bearer":{}}},
      *    @OA\RequestBody(
      *     required=true,
      *     description="Create New brand with brand data",
@@ -90,6 +92,7 @@ class BrandsController extends Controller
      *    tags={"Brands"},
      *    summary="Brands Detail API",
      *    description="Brands Detail API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Brand ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Response(
      *         response=200,
@@ -120,6 +123,7 @@ class BrandsController extends Controller
      *    tags={"Brands"},
      *    summary="Update brand API",
      *    description="Update brand API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Brand ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Parameter(name="_method", description="Method", example="PUT", required=true, in="query", @OA\Schema(type="string")),
      *    @OA\RequestBody(
@@ -166,6 +170,7 @@ class BrandsController extends Controller
      *    tags={"Brands"},
      *    summary="Delete brand API",
      *    description="Delete brand API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Brand ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Response(
      *         response=200,

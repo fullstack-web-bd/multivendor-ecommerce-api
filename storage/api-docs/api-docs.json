@@ -67,6 +67,47 @@
                 }
             }
         },
+        "/api/v1/me": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get current logged in user data.",
+                "description": "Get current logged in user data.",
+                "operationId": "c753eec72dee722bcba667d62e4271f2",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User data fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/logout": {
             "post": {
                 "tags": [
@@ -75,23 +116,6 @@
                 "summary": "Logout User",
                 "description": "Logout User",
                 "operationId": "74430d037edcdac15162886e42ccc9b5",
-                "requestBody": {
-                    "description": "Login User with user data",
-                    "required": true,
-                    "content": {
-                        "multipart/form-data": {
-                            "schema": {
-                                "properties": {
-                                    "email": {
-                                        "type": "string",
-                                        "example": "test@example.com"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -117,7 +141,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/password/code": {
@@ -328,7 +357,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -392,7 +426,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/brands/{id}": {
@@ -440,7 +479,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -534,7 +578,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -580,7 +629,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/categories": {
@@ -616,7 +670,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -683,7 +742,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/categories/{id}": {
@@ -731,7 +795,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "post": {
                 "tags": [
@@ -828,7 +897,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -874,7 +948,12 @@
                             }
                         }
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/v1/test": {
@@ -931,5 +1010,29 @@
             "name": "Ping",
             "description": "Ping"
         }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "Bearer token, Ex: Bearer <token>",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        [
+            {
+                "bearer": {
+                    "type": "apiKey",
+                    "description": "Bearer token, Ex: Bearer <token>",
+                    "name": "Authorization",
+                    "in": "header",
+                    "scheme": "bearer"
+                }
+            }
+        ]
     ]
 }

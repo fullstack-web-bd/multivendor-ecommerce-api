@@ -22,6 +22,7 @@ class CategoriesController extends Controller
      *    tags={"Categories"},
      *    summary="Categories List API",
      *    description="Categories List API",
+     *    security={{"bearer":{}}},
      *    @OA\Response(
      *         response=200,
      *         description="Success",
@@ -48,6 +49,7 @@ class CategoriesController extends Controller
      *    tags={"Categories"},
      *    summary="Create Category API",
      *    description="Create Category API",
+     *    security={{"bearer":{}}},
      *    @OA\RequestBody(
      *     required=true,
      *     description="Create New category with category data",
@@ -91,6 +93,7 @@ class CategoriesController extends Controller
      *    tags={"Categories"},
      *    summary="Categories Detail API",
      *    description="Categories Detail API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Category ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Response(
      *         response=200,
@@ -121,6 +124,7 @@ class CategoriesController extends Controller
      *    tags={"Categories"},
      *    summary="Update category API",
      *    description="Update category API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Category ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Parameter(name="_method", description="Method", example="PUT", required=true, in="query", @OA\Schema(type="string")),
      *    @OA\RequestBody(
@@ -168,6 +172,7 @@ class CategoriesController extends Controller
      *    tags={"Categories"},
      *    summary="Delete category API",
      *    description="Delete category API",
+     *    security={{"bearer":{}}},
      *    @OA\Parameter(name="id", description="Category ID or Slug", example=1, required=true, in="path", @OA\Schema(type="string")),
      *    @OA\Response(
      *         response=200,

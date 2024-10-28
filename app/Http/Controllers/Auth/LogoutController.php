@@ -24,16 +24,7 @@ class LogoutController extends Controller
      *    tags={"Auth"},
      *    summary="Logout User",
      *    description="Logout User",
-     *    @OA\RequestBody(
-     *     required=true,
-     *     description="Login User with user data",
-     *     @OA\MediaType(
-     *      mediaType="multipart/form-data",
-     *      @OA\Schema(
-     *         @OA\Property(property="email", type="string", example="test@example.com")
-     *      )
-     *     ),
-     *    ),
+     *    security={{"bearer":{}}},
      *    @OA\Response(
      *         response=200,
      *         description="Success",
@@ -48,7 +39,7 @@ class LogoutController extends Controller
     public function logout(Request $request)
     {
         try {
-            $data = $this->authService->logout($request->all());
+            $data = $this->authService->logout();
             return $this->successResponse('User logged out successfully.', $data);
         } catch (\Throwable $th) {
             return $this->errorResponse('User could not be logged out.', $th);

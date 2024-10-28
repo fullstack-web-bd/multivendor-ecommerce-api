@@ -120,11 +120,9 @@ class AuthService
         return $this->getAuthData($user, $tokenInstance);
     }
 
-    public function logout( $email ): bool
+    public function logout(): bool
     {
-        $user = $this->authRepository->getUserByEmail($email);
-
-        $user->tokens->each(function ($token, $key) {
+        auth()->user()->tokens->each(function ($token, $key) {
             $token->delete();
         });
 

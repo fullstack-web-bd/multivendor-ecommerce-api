@@ -25,4 +25,5 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/password/code', [PasswordResetController::class, 'sendResetCode']);
 Route::post('/password/reset', [PasswordResetController::class, 'resetPassword']);
-Route::post('/logout', [LogoutController::class, 'logout']);
+Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:api');
+Route::get('/me', [LoginController::class, 'getLoggedInUser'])->middleware('auth:api');
