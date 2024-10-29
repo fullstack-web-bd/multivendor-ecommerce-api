@@ -24,7 +24,7 @@ class AuthService
             'token' => $tokenInstance->accessToken,
             'token_type' => 'Bearer',
             'expires_at' => Carbon::parse($tokenInstance->token->expires_at),
-            'permissions' => [], // TODO: Implement permissions.
+            'permissions' => $user->getAllPermissions()->pluck('name'),
         ];
     }
 

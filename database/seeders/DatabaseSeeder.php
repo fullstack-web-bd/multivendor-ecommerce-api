@@ -11,11 +11,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Run initial seeders.
         $this->call([
             CategorySeeder::class,
             BrandSeeder::class,
             RolePermissionSeeder::class,
             UserSeeder::class,
         ]);
+
+        // Install Passport.
+        $this->command->call('passport:install');
+
+        // Clear cache.
+        $this->command->call('cache:clear');
     }
 }

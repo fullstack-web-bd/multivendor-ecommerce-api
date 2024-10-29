@@ -28,8 +28,8 @@ class LoginController extends Controller
      *     @OA\MediaType(
      *      mediaType="multipart/form-data",
      *      @OA\Schema(
-     *         @OA\Property(property="email", type="string", example="test@example.com"),
-     *         @OA\Property(property="password", type="string", example="12345678"),
+     *         @OA\Property(property="email", type="string", example="superadmin@example.com"),
+     *         @OA\Property(property="password", type="string", example="password"),
      *      )
      *     ),
      *    ),

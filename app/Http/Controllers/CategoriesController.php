@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Permissions\CategoriesPermission;
 use App\Services\CategoryService;
 use App\Traits\Responsable;
 
@@ -12,7 +13,8 @@ class CategoriesController extends Controller
     use Responsable;
 
     public function __construct(
-        private readonly CategoryService $categoryService
+        private readonly CategoryService $categoryService,
+        private readonly CategoriesPermission $permission
     ) {
     }
 
@@ -37,6 +39,8 @@ class CategoriesController extends Controller
     public function index()
     {
         try {
+            $this->permission->canViewCategories();
+
             return $this->successResponse('Category list fetched successfully.', $this->categoryService->get());
         } catch (\Throwable $th) {
             return $this->errorResponse('Category list could not be fetched.', $th);
@@ -78,6 +82,8 @@ class CategoriesController extends Controller
     public function store(CategoryCreateRequest $request)
     {
         try {
+            $this->permission->canCreateCategories();
+
             return $this->successResponse(
                 'Category created successfully.',
                 $this->categoryService->store($request->all())
@@ -109,6 +115,8 @@ class CategoriesController extends Controller
     public function show(int $id)
     {
         try {
+            $this->permission->canViewCategories();
+
             return $this->successResponse(
                 'Category detail fetched successfully.',
                 $this->categoryService->findById($id)
@@ -157,6 +165,8 @@ class CategoriesController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
+            $this->permission->canUpdateCategories();
+
             return $this->successResponse(
                 'Category updated successfully.',
                 $this->categoryService->update($request->all(), $id)
@@ -188,6 +198,8 @@ class CategoriesController extends Controller
     public function destroy(string $id)
     {
         try {
+            $this->permission->canDeleteCategories();
+
             return $this->successResponse(
                 'Category deleted successfully.',
                 $this->categoryService->destroy($id)

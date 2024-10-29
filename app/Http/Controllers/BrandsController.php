@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BrandCreateRequest;
 use App\Http\Requests\BrandUpdateRequest;
+use App\Permissions\BrandsPermission;
 use App\Services\BrandService;
 use App\Traits\Responsable;
 
@@ -12,7 +13,8 @@ class BrandsController extends Controller
     use Responsable;
 
     public function __construct(
-        private readonly BrandService $brandService
+        private readonly BrandService $brandService,
+        private readonly BrandsPermission $permission
     ) {
     }
 
@@ -37,6 +39,8 @@ class BrandsController extends Controller
     public function index()
     {
         try {
+            $this->permission->canViewBrands();
+
             return $this->successResponse('Brand list fetched successfully.', $this->brandService->get());
         } catch (\Throwable $th) {
             return $this->errorResponse('Brand list could not be fetched.', $th);
@@ -77,6 +81,8 @@ class BrandsController extends Controller
     public function store(BrandCreateRequest $request)
     {
         try {
+            $this->permission->canCreateBrands();
+
             return $this->successResponse(
                 'Brand created successfully.',
                 $this->brandService->store($request->all())
@@ -108,6 +114,8 @@ class BrandsController extends Controller
     public function show(int $id)
     {
         try {
+            $this->permission->canViewBrands();
+
             return $this->successResponse(
                 'Brand detail fetched successfully.',
                 $this->brandService->findById($id)
@@ -155,6 +163,8 @@ class BrandsController extends Controller
     public function update(BrandUpdateRequest $request, $id)
     {
         try {
+            $this->permission->canUpdateBrands();
+
             return $this->successResponse(
                 'Brand updated successfully.',
                 $this->brandService->update($request->all(), $id)
@@ -186,6 +196,8 @@ class BrandsController extends Controller
     public function destroy(string $id)
     {
         try {
+            $this->permission->canDeleteBrands();
+
             return $this->successResponse(
                 'Brand deleted successfully.',
                 $this->brandService->destroy($id)
