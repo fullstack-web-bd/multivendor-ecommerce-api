@@ -30,4 +30,9 @@ class ShopService
 
         return $this->shopRepository->store($data);
     }
+
+    public function dropdown(): array
+    {
+        return Shop::dropdown('id', 'name');
+    }
 }

@@ -26,6 +26,11 @@ class CategoryService
         return $this->categoryRepository->get();
     }
 
+    public function dropdown(): array
+    {
+        return Category::dropdown('id', 'name');
+    }
+
     public function findById(int $id): Category
     {
         return $this->categoryRepository->show($id);

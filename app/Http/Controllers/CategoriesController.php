@@ -48,6 +48,35 @@ class CategoriesController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *    path="/api/v1/categories/dropdown/data",
+     *    tags={"Categories"},
+     *    summary="Categories Dropdown List",
+     *    description="Categories Dropdown List",
+     *    security={{"bearer":{}}},
+     *    @OA\Response(
+     *         response=200,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Category list fetched successfully."),
+     *             @OA\Property(property="data", type="object", example="null"),
+     *         )
+     *     )
+     * )
+     */
+    public function dropdown()
+    {
+        try {
+            $this->permission->canViewCategories();
+
+            return $this->successResponse('Category dropdown fetched successfully.', $this->categoryService->dropdown());
+        } catch (\Throwable $th) {
+            return $this->errorResponse('Category dropdown could not be fetched.', $th);
+        }
+    }
+
+    /**
      * @OA\Post(
      *    path="/api/v1/categories",
      *    tags={"Categories"},

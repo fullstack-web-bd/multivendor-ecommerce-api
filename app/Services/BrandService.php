@@ -91,4 +91,9 @@ class BrandService
 
         return $this->brandRepository->destroy($id);
     }
+
+    public function dropdown(): array
+    {
+        return Brand::dropdown('id', 'name');
+    }
 }

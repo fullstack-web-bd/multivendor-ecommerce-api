@@ -31,6 +31,12 @@ class Permissions
                 BrandsPermission::UPDATE_BRANDS,
                 BrandsPermission::DELETE_BRANDS,
             ],
+            'shops' => [
+                ShopsPermission::VIEW_SHOPS,
+                ShopsPermission::CREATE_SHOPS,
+                ShopsPermission::UPDATE_SHOPS,
+                ShopsPermission::DELETE_SHOPS,
+            ],
         ];
     }
 
@@ -68,6 +74,9 @@ class Permissions
             ProductsPermission::CREATE_PRODUCTS,
             ProductsPermission::UPDATE_PRODUCTS,
             ProductsPermission::DELETE_PRODUCTS,
+
+            // Shops permissions.
+            ShopsPermission::VIEW_SHOPS,
         ];
     }
 

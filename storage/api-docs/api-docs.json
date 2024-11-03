@@ -499,6 +499,47 @@
                 ]
             }
         },
+        "/api/v1/brands/dropdown/data": {
+            "get": {
+                "tags": [
+                    "Brands"
+                ],
+                "summary": "Brands Dropdown List",
+                "description": "Brands Dropdown List",
+                "operationId": "c7cd696b063b6a736c3e3bbf7f863a5d",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category list fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/brands/{id}": {
             "get": {
                 "tags": [
@@ -815,6 +856,47 @@
                 ]
             }
         },
+        "/api/v1/categories/dropdown/data": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Categories Dropdown List",
+                "description": "Categories Dropdown List",
+                "operationId": "85ce58b3378a2628c9aac45b12451e70",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category list fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/categories/{id}": {
             "get": {
                 "tags": [
@@ -1021,6 +1103,47 @@
                 ]
             }
         },
+        "/api/v1/shops/dropdown/data": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Shops Dropdown List",
+                "description": "Shops Dropdown List",
+                "operationId": "737e510b274d27fbd92a77388c2ac5c5",
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Shop list fetched successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/v1/test": {
             "get": {
                 "tags": [
@@ -1070,6 +1193,10 @@
         {
             "name": "Categories",
             "description": "Categories"
+        },
+        {
+            "name": "Shops",
+            "description": "Shops"
         },
         {
             "name": "Ping",

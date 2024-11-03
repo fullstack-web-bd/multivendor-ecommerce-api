@@ -23,6 +23,12 @@ class UserSeeder extends Seeder
 
         // User Superadmin.
         $superAdminUser->assignRole('Superadmin');
+        $shop = $this->shopService->createShop([
+            'name' => 'Multivendor Mall',
+            'owner_id' => $superAdminUser->id,
+        ]);
+        $superAdminUser->shop_id = $shop->id;
+        $superAdminUser->save();
 
         // Create Vendor and Shop.
         $vendorUser = User::create([
@@ -32,7 +38,7 @@ class UserSeeder extends Seeder
         ]);
         $vendorUser->assignRole('Vendor');
         $shop = $this->shopService->createShop([
-            'name' => 'Superadmin Shop',
+            'name' => 'Vendor Shop',
             'owner_id' => $vendorUser->id,
         ]);
         $vendorUser->shop_id = $shop->id;
