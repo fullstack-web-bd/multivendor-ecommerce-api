@@ -10,16 +10,22 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        $superAdminRole = Role::create([
-            'name' => 'Superadmin',
-            'guard_name' => 'api',
-        ]);
+        $roles = [
+            'Superadmin' => Role::create(['name' => 'Superadmin', 'guard_name' => 'api']),
+            'Vendor' => Role::create(['name' => 'Vendor', 'guard_name' => 'api']),
+            'Customer' => Role::create(['name' => 'Customer', 'guard_name' => 'api']),
+        ];
 
+        // Create permissions.
         foreach (Permissions::getPermissionsWithGroup() as $groupName => $permission) {
             foreach ($permission as $permissionName) {
                 Permissions::createApiPermission($permissionName, $groupName);
-                $superAdminRole->givePermissionTo($permissionName);
             }
         }
+
+        // Assign permissions to roles.
+        $roles['Superadmin']->givePermissionTo(Permissions::getAllPermissions());
+        $roles['Vendor']->givePermissionTo(Permissions::getVendorPermissions());
+        $roles['Customer']->givePermissionTo(Permissions::getCustomerPermissions());
     }
 }

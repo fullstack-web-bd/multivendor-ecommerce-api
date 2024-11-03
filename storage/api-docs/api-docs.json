@@ -324,6 +324,71 @@
                 }
             }
         },
+        "/api/v1/vendor-register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "New Vendor Registration",
+                "description": "New Vendor Registration",
+                "operationId": "49d0f30edfa80921f6d73481a0fa0390",
+                "requestBody": {
+                    "description": "Create New Vendor with user data",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "User Name"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "test@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "12345678"
+                                    },
+                                    "shop_name": {
+                                        "type": "string",
+                                        "example": "Sample Shop Name"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User registered successfully."
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "example": "null"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/brands": {
             "get": {
                 "tags": [

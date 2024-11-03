@@ -16,4 +16,13 @@ class AuthRepository
     {
         return User::where('email', $email)->first();
     }
+
+    public function getUserByRole($role, $email): ?User
+    {
+        return User::whereHas('roles', function ($query) use ($role) {
+            $query->where('name', $role);
+        })
+            ->where('email', $email)
+            ->first();
+    }
 }

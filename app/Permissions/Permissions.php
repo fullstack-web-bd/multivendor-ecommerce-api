@@ -48,13 +48,26 @@ class Permissions
         return $allPermissions;
     }
 
-    public function getCustomerPermissions(): array
+    public static function getCustomerPermissions(): array
     {
         return [
             DashboardPermission::VIEW_DASHBOARD,
 
             // view orders.
             // view profile, edit profile.
+        ];
+    }
+
+    public static function getVendorPermissions(): array
+    {
+        return [
+            DashboardPermission::VIEW_DASHBOARD,
+
+            // Products permissions.
+            ProductsPermission::VIEW_PRODUCTS,
+            ProductsPermission::CREATE_PRODUCTS,
+            ProductsPermission::UPDATE_PRODUCTS,
+            ProductsPermission::DELETE_PRODUCTS,
         ];
     }
 

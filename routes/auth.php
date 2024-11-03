@@ -4,10 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\BrandsController;
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\TestController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\VendorRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/vendor-register', [VendorRegisterController::class, 'register']);
 Route::post('/password/code', [PasswordResetController::class, 'sendResetCode']);
 Route::post('/password/reset', [PasswordResetController::class, 'resetPassword']);
 Route::post('/logout', [LogoutController::class, 'logout'])->middleware('auth:api');

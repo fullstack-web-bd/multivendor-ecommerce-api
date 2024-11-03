@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\VendorRegisterRequest;
 use App\Services\AuthService;
 use App\Traits\Responsable;
-use Log;
 
-class RegisterController extends Controller
+class VendorRegisterController extends Controller
 {
     use Responsable;
 
@@ -19,19 +18,20 @@ class RegisterController extends Controller
 
     /**
      * @OA\Post(
-     *    path="/api/v1/register",
+     *    path="/api/v1/vendor-register",
      *    tags={"Auth"},
-     *    summary="New User Registration",
-     *    description="New User Registration",
+     *    summary="New Vendor Registration",
+     *    description="New Vendor Registration",
      *    @OA\RequestBody(
      *     required=true,
-     *     description="Create New User with user data",
+     *     description="Create New Vendor with user data",
      *     @OA\MediaType(
      *      mediaType="multipart/form-data",
      *      @OA\Schema(
      *         @OA\Property(property="name", type="string", example="User Name"),
      *         @OA\Property(property="email", type="string", example="test@example.com"),
      *         @OA\Property(property="password", type="string", example="12345678"),
+     *         @OA\Property(property="shop_name", type="string", example="Sample Shop Name"),
      *      )
      *     ),
      *    ),
@@ -46,13 +46,13 @@ class RegisterController extends Controller
      *     )
      * )
      */
-    public function register(RegisterRequest $request)
+    public function register(VendorRegisterRequest $request)
     {
         try {
+            $request->merge(['is_customer' => false]);
             $registeredUser = $this->authService->register($request->validated());
             return $this->successResponse('Your account has been created successfully.', $registeredUser);
         } catch (\Throwable $th) {
-            Log::error($th);
             return $this->errorResponse('Your account could not be created.', $th);
         }
     }

@@ -6,14 +6,17 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\AuthRepository;
+use App\Repositories\ShopRepository;
 use Carbon\Carbon;
 use Hash;
+use Log;
 use Mail;
 
 class AuthService
 {
     public function __construct(
-        private readonly AuthRepository $authRepository
+        private readonly AuthRepository $authRepository,
+        private readonly ShopService $shopService,
     ) {
     }
 
@@ -31,12 +34,55 @@ class AuthService
     public function register(array $data): array
     {
         $data['password'] = Hash::make($data['password']);
+        $data['is_customer'] = isset($data['is_customer']) ? (bool) $data['is_customer'] : true;
 
-        $user = $this->authRepository->register($data);
+        $data = $this->getCustomerOrVendorDataByEmail($data);
+        $user = $data['needs_account_create'] ?
+            $this->authRepository->register($data) :
+            $this->authRepository->getUserByEmail($data['email']);
+
+        $this->createCustomerOrVendorByType($data, $user);
 
         $tokenInstance = $user->createToken('authToken');
 
         return $this->getAuthData($user, $tokenInstance);
+    }
+
+    public function getCustomerOrVendorDataByEmail(array $data): array
+    {
+        $data['needs_account_create'] = true;
+        if (!empty($this->authRepository->getUserByEmail($data['email']))) {
+            $data['needs_account_create'] = false;
+            return $data; // proceed with the given data.
+        }
+
+        // Check if there is already a vendor/customer registered with the Vendor role.
+        if (
+            ($data['is_customer'] && $this->authRepository->getUserByRole('Vendor', $data['email'])) ||
+            (!$data['is_customer'] && $this->authRepository->getUserByRole('Customer', $data['email']))
+        ) {
+            $data['needs_account_create'] = false;
+        }
+
+        return $data;
+    }
+
+    public function createCustomerOrVendorByType(array $data, User $user): void
+    {
+        if ($data['is_customer']) {
+            $user->assignRole('Customer');
+            return;
+        }
+
+        // Else, assign some vendor permissions to the user and create shop.
+        $vendorData = [
+            'name' => $data['shop_name'],
+            'owner_id' => $user->id,
+        ];
+        $shop = $this->shopService->createShop($vendorData);
+        $user->assignRole('Vendor');
+        $user->shop_id = $shop->id;
+        $user->save();
     }
 
     /**
