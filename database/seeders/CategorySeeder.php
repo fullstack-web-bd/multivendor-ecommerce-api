@@ -15,6 +15,15 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'id' => 1,
+                'name' => 'Uncategorized',
+                'parent_id' => null,
+                'slug' => 'uncategorized',
+                'description' => '',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id' => 2,
                 'name' => 'Electronics',
                 'parent_id' => null,
                 'slug' => 'electronics',
@@ -23,7 +32,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 2,
+                'id' => 3,
                 'name' => 'Mobiles',
                 'parent_id' => 1,
                 'slug' => 'mobiles',
@@ -32,7 +41,7 @@ class CategorySeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Grocery',
                 'parent_id' => null,
                 'slug' => 'grocery',

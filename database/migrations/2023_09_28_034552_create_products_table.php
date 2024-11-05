@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->unsignedInteger('category_id')->nullable();
             $table->unsignedInteger('shop_id')->nullable();
             $table->boolean('is_featured')->default(0);
-            $table->boolean('status')->default(0)->comment('0 => draft, 1 => published');
+            $table->enum('status', ['draft', 'published', 'trashed'])->default('published');
 
             $table->unsignedBigInteger('total_view')->default(0);
             $table->unsignedBigInteger('total_searched')->default(0);
@@ -30,6 +30,7 @@ return new class extends Migration {
 
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
+            $table->unsignedBigInteger('trashed_by')->nullable();
             $table->timestamps();
         });
     }

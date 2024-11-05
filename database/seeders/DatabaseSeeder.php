@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             RolePermissionSeeder::class,
             UserSeeder::class,
+            ProductSeeder::class,
         ]);
 
         // Install Passport.

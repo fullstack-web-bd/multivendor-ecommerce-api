@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BrandsController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ShopsController;
 use App\Http\Controllers\TestController;
 use Illuminate\Http\Request;
@@ -34,5 +35,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('shops/dropdown/data', [ShopsController::class, 'dropdown']);
 
-    // Route::apiResource('products', ProductsController::class);
+    Route::apiResource('products', ProductsController::class);
+    Route::delete('products-images/{id}', [ProductsController::class, 'deleteImage']);
 });

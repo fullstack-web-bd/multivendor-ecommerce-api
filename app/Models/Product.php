@@ -33,7 +33,7 @@ class Product extends Model
      */
     public function brand()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsTo(Brand::class)->select('id', 'name', 'slug');
     }
 
     /**
@@ -41,7 +41,7 @@ class Product extends Model
      */
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)->select('id', 'name', 'slug');
     }
 
     /**
@@ -49,7 +49,7 @@ class Product extends Model
      */
     public function shop()
     {
-        return $this->belongsTo(Shop::class);
+        return $this->belongsTo(Shop::class)->select('id', 'name', 'slug');
     }
 
     /**
@@ -57,7 +57,7 @@ class Product extends Model
      */
     public function images()
     {
-        return $this->hasMany(ProductImage::class);
+        return $this->hasMany(ProductImages::class, 'product_id')->select('id', 'product_id', 'file', 'is_featured', 'order');
     }
 
     /**
@@ -65,6 +65,6 @@ class Product extends Model
      */
     public function featuredImage()
     {
-        return $this->hasOne(ProductImage::class)->where('is_featured', 1);
+        return $this->hasOne(ProductImages::class)->where('is_featured', 1)->select('id', 'product_id', 'file', 'is_featured', 'order');
     }
 }
